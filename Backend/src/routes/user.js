@@ -6,6 +6,7 @@ const ConnectionRequest = require("../models/connectionRequest");
 const User = require("../models/user");
 
 const USER_SAFE_DATA = "firstName lastName photoUrl age gender about skills";
+const USER_SAFE_DATA_CONNECTION = "firstName lastName photoUrl age gender about skills number";
 
 userRouter.get("/user/requests/received", userAuth, async (req, res) => {
   try {
@@ -29,15 +30,15 @@ userRouter.get("/user/requests/received", userAuth, async (req, res) => {
 userRouter.get("/user/connections", userAuth, async (req, res) => {
   try {
     const loggedInUser = req.user;
-
+    
     const connectionRequests = await ConnectionRequest.find({
       $or: [
         { toUserId: loggedInUser._id, status: "accepted" },
         { fromUserId: loggedInUser._id, status: "accepted" },
       ],
     })
-      .populate("fromUserId", USER_SAFE_DATA)
-      .populate("toUserId", USER_SAFE_DATA);
+      .populate("fromUserId", USER_SAFE_DATA_CONNECTION)
+      .populate("toUserId", USER_SAFE_DATA_CONNECTION);
 
     console.log(connectionRequests);
 
