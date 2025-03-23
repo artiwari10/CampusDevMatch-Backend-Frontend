@@ -16,7 +16,6 @@ const NavBar = () => {
       return navigate("/login");
     } catch (err) {
       // Error logic maybe redirect to error page
-      console.log(err);
     }
   };
 
@@ -56,9 +55,6 @@ const NavBar = () => {
 
               <li>
                 <Link to="/requests">Requests</Link>
-              </li>
-              <li>
-                <Link to="/premium">Premium</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

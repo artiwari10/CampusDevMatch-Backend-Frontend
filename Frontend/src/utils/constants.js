@@ -1,2 +1,1 @@
-export const BASE_URL =
-  location.hostname === "localhost" ? "http://localhost:8888" : "/api";
+export const BASE_URL = "https://campusdevmatch-backend-frontend.onrender.com";

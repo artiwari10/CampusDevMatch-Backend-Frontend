@@ -24,14 +24,10 @@ const EditProfile = ({ user }) => {
         BASE_URL + "/profile/edit",
         {
           firstName,
-          middleName,
           lastName,
           photoUrl,
           age,
           gender,
-          college,
-          year,
-          number,
           about,
         },
         { withCredentials: true }

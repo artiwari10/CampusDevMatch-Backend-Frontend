@@ -9,14 +9,7 @@ const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [college, setCollege] = useState("");
-  const [year, setYear] = useState("");
-  const [number, setNumber] = useState("");
-
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -43,7 +36,7 @@ const Login = () => {
     try {
       const res = await axios.post(
         BASE_URL + "/signup",
-        { firstName, middleName, lastName, emailId, password,age,gender,college,year,number },
+        { firstName, lastName, emailId, password },
         { withCredentials: true }
       );
       dispatch(addUser(res.data.data));
@@ -76,17 +69,6 @@ const Login = () => {
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
-                    <span className="label-text">Middle Name</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={middleName}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setMiddleName(e.target.value)}
-                  />
-               
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
                     <span className="label-text">Last Name</span>
                   </div>
                   <input
@@ -94,63 +76,6 @@ const Login = () => {
                     value={lastName}
                     className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setLastName(e.target.value)}
-                  />
-                </label>
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Age</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={age}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setAge(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Gender</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={gender}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setGender(e.target.value)}
-                  />
-                </label>
-               
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">University Name</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={college}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setCollege(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Year</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={year}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setYear(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Mobile Number</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={number}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setNumber(e.target.value)}
                   />
                 </label>
               </>

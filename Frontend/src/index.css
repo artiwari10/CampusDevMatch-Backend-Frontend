@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add custom theme styles here */
+:root {
+  --primary-color: #4caf50; /* Example: Green */
+  --secondary-color: #ff9800; /* Example: Orange */
+  --background-color: #f5f5f5; /* Example: Light Gray */
+}
+
