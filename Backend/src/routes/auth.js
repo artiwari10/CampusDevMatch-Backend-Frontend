@@ -34,8 +34,7 @@ const savedUser = await user.save();
   secure: true, // Must be true when using HTTPS
   sameSite: "none",
     });
-    await user.save();
-    res.send("User Added successfully!");
+      res.status(201).json({ message: "User Added successfully!", data: savedUser });
   } catch (err) {
     res.status(400).send("ERROR : " + err.message);
   }
