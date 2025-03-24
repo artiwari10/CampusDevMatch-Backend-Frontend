@@ -108,6 +108,17 @@ const Login = () => {
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
+                    <span className="label-text">Gender</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={gender}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
                     <span className="label-text">College</span>
                   </div>
                   <input
