@@ -51,7 +51,6 @@ const Connections = () => {
                 {firstName + " " + lastName}
               </h2>
               {age && gender && <p>{age + ", " + gender}</p>}
-               <p>{college + " in " + year + " year"}</p>
                <p>{number}</p>
               <p>{about}</p>
             </div>
