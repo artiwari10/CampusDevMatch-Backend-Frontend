@@ -110,12 +110,16 @@ const Login = () => {
                   <div className="label">
                     <span className="label-text">Gender</span>
                   </div>
-                  <input
-                    type="text"
+                  <select
+                    className="select select-bordered w-full max-w-xs"
                     value={gender}
-                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setGender(e.target.value)}
-                  />
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
