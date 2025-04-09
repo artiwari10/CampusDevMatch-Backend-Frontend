@@ -53,161 +53,150 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5 py-12 px-4 sm:px-6 lg:px-8 relative">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,theme(colors.primary)_1px,transparent_0)] [background-size:40px_40px]"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,theme(colors.secondary)_1px,transparent_0)] [background-size:80px_80px] rotate-45"></div>
-      </div>
-
-      {/* Glass Card */}
-      <div className="max-w-md w-full space-y-8 bg-base-100/90 backdrop-blur-sm p-8 rounded-lg shadow-2xl relative z-10 border border-white/10">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-primary">
-            {isLoginForm ? "Welcome Back" : "Create Your Account"}
+    <div className="flex justify-center my-10">
+      <div className="card bg-base-300 w-96 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title justify-center">
+            {isLoginForm ? "Login" : "Sign Up"}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-400">
-            {isLoginForm ? "Sign in to your account" : "Join our community"}
-          </p>
-        </div>
-
-        <div className="mt-8 space-y-6">
-          {!isLoginForm && (
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">First Name</label>
+          <div>
+            {!isLoginForm && (
+              <>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">First Name</span>
+                  </div>
                   <input
                     type="text"
                     value={firstName}
-                    className="mt-1 input input-bordered w-full bg-base-200"
+                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setFirstName(e.target.value)}
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">Last Name</label>
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Middle Name</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={middleName}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setMiddleName(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Last Name</span>
+                  </div>
+                  </label>
                   <input
                     type="text"
                     value={lastName}
-                    className="mt-1 input input-bordered w-full bg-base-200"
+                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setLastName(e.target.value)}
                   />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400">Middle Name (Optional)</label>
-                <input
-                  type="text"
-                  value={middleName}
-                  className="mt-1 input input-bordered w-full bg-base-200"
-                  onChange={(e) => setMiddleName(e.target.value)}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">Age</label>
+                                  <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Age</span>
+                  </div>
                   <input
-                    type="number"
+                    type="text"
                     value={age}
-                    className="mt-1 input input-bordered w-full bg-base-200"
+                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setAge(e.target.value)}
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">Gender</label>
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Gender</span>
+                  </div>
                   <select
-                    className="mt-1 select select-bordered w-full bg-base-200"
+                    className="select select-bordered w-full max-w-xs"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                   </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400">College</label>
-                <input
-                  type="text"
-                  value={college}
-                  className="mt-1 input input-bordered w-full bg-base-200"
-                  onChange={(e) => setCollege(e.target.value)}
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">Year</label>
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">College</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={college}
+                    className="input input-bordered w-full max-w-xs"
+                    onChange={(e) => setCollege(e.target.value)}
+                  />
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">College Year</span>
+                  </div>
                   <input
                     type="text"
                     value={year}
-                    className="mt-1 input input-bordered w-full bg-base-200"
+                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setYear(e.target.value)}
                   />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-400">Mobile Number</label>
+                </label>
+                <label className="form-control w-full max-w-xs my-2">
+                  <div className="label">
+                    <span className="label-text">Mobile Number</span>
+                  </div>
                   <input
-                    type="tel"
+                    type="text"
                     value={number}
-                    className="mt-1 input input-bordered w-full bg-base-200"
+                    className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setNumber(e.target.value)}
                   />
-                </div>
+                </label>
+              </>
+            )}
+            <label className="form-control w-full max-w-xs my-2">
+              <div className="label">
+                <span className="label-text">Email ID:</span>
               </div>
-            </div>
-          )}
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-400">Email Address</label>
               <input
-                type="email"
+                type="text"
                 value={emailId}
-                className="mt-1 input input-bordered w-full bg-base-200"
+                className="input input-bordered w-full max-w-xs"
                 onChange={(e) => setEmailId(e.target.value)}
               />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-400">Password</label>
+            </label>
+            <label className="form-control w-full max-w-xs my-2">
+              <div className="label">
+                <span className="label-text">Password</span>
+              </div>
               <input
                 type="password"
                 value={password}
-                className="mt-1 input input-bordered w-full bg-base-200"
+                className="input input-bordered w-full max-w-xs"
                 onChange={(e) => setPassword(e.target.value)}
               />
-            </div>
+            </label>
           </div>
-
-          {error && (
-            <div className="text-error text-sm text-center">{error}</div>
-          )}
-
-          <div>
+          <p className="text-red-500">{error}</p>
+          <div className="card-actions justify-center m-2">
             <button
-              className="btn btn-primary w-full"
+              className="btn btn-primary"
               onClick={isLoginForm ? handleLogin : handleSignUp}
             >
-              {isLoginForm ? "Sign In" : "Create Account"}
+              {isLoginForm ? "Login" : "Sign Up"}
             </button>
           </div>
-        </div>
 
-        <div className="text-center">
-          <button
-            className="text-primary hover:underline text-sm"
+          <p
+            className="m-auto cursor-pointer py-2"
             onClick={() => setIsLoginForm((value) => !value)}
           >
             {isLoginForm
-              ? "New here? Create an account"
-              : "Already have an account? Sign in"}
-          </button>
+              ? "New User? Signup Here"
+              : "Existing User? Login Here"}
+          </p>
         </div>
       </div>
     </div>
