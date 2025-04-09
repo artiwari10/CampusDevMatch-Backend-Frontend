@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 
-const NavBar = () => {
+const Navbar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -13,67 +13,38 @@ const NavBar = () => {
     try {
       await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
       dispatch(removeUser());
-      return navigate("/login");
+      navigate("/login");
     } catch (err) {
-      // Error logic maybe redirect to error page
+      console.error("Logout failed:", err);
     }
   };
 
+  if (!user) return null;
+
   return (
-    <div className="navbar bg-gradient-to-r from-purple-900 to-indigo-900 text-white shadow-lg">
-      <div className="flex-1">
-        <Link to="/" className="btn btn-ghost text-xl font-bold">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">
-            Campus Dev Match
-          </span>
-        </Link>
+    <div className="navbar bg-base-100">
+      <div className="navbar-start">
+        <Link to="/" className="btn btn-ghost normal-case text-xl">CampusDevMatch</Link>
       </div>
-      {user && (
-        <div className="flex-none gap-4">
-          <div className="form-control text-cyan-300">
-            Welcome, {user.firstName}
+      
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li><Link to="/feed">Feed</Link></li>
+          <li><Link to="/connections">Connections</Link></li>
+          <li><Link to="/requests">Requests</Link></li>
+        </ul>
+      </div>
+      
+      <div className="navbar-end">
+        <Link to="/profile" className="btn btn-ghost btn-circle avatar">
+          <div className="w-10 rounded-full">
+            <img src={user?.profilePic || "https://via.placeholder.com/40"} alt="Profile" />
           </div>
-          <div className="dropdown dropdown-end mx-5 flex">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar ring ring-cyan-400 ring-offset-2 ring-offset-base-100"
-            >
-              <div className="w-10 rounded-full">
-                <img alt="user photo" src={user.photoUrl} />
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-gradient-to-b from-purple-900 to-indigo-900 rounded-box z-[1] mt-3 w-52 p-2 shadow-lg border border-cyan-400"
-            >
-              <li>
-                <Link to="/profile" className="justify-between hover:bg-purple-700 hover:text-cyan-300">
-                  Profile
-                  <span className="badge badge-primary">New</span>
-                </Link>
-              </li>
-              <li>
-                <Link to="/connections" className="hover:bg-purple-700 hover:text-cyan-300">
-                  Connections
-                </Link>
-              </li>
-              <li>
-                <Link to="/requests" className="hover:bg-purple-700 hover:text-cyan-300">
-                  Requests
-                </Link>
-              </li>
-              <li>
-                <a onClick={handleLogout} className="hover:bg-purple-700 hover:text-cyan-300">
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
+        </Link>
+        <button className="btn btn-ghost" onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };
 
-export default NavBar;
+export default Navbar;
