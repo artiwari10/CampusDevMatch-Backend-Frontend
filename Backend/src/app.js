@@ -7,7 +7,7 @@ const cors = require("cors");
 require('dotenv').config();
 
 app.use(cors({
-  origin: ['http://localhost:4173', 'http://localhost:5173','https://campus-dev-match-backend-frontend.vercel.app'],
+  origin: ['https://campus-dev-match-backend-frontend.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE']
 }));
