@@ -7,12 +7,13 @@ import appStore from "./utils/appStore";
 import Feed from "./components/Feed";
 import Connections from "./components/Connections";
 import Requests from "./components/Requests";
+import Chat from "./components/Chat";
 
 function App() {
   return (
     <>
       <Provider store={appStore}>
-        <BrowserRouter basename="/">
+        <BrowserRouter basename="/" future={{ v7_startTransition: true,v7_relativeSplatPath: true  }}>
           <Routes>
             <Route path="/" element={<Body />}>
               <Route path="/" element={<Feed />} />
@@ -21,6 +22,7 @@ function App() {
               <Route path="/feed" element={<Feed />} />
               <Route path="/connections" element={<Connections />} />
               <Route path="/requests" element={<Requests />} />
+              <Route path="/chat/:targetUserId" element={<Chat />} />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -42,7 +42,18 @@ const Login = () => {
     try {
       const res = await axios.post(
         BASE_URL + "/signup",
-        { firstName,middleName, lastName, emailId, password, age,gender,college,year,number},
+        {
+          firstName,
+          middleName,
+          lastName,
+          emailId,
+          password,
+          age,
+          gender,
+          college,
+          year,
+          number,
+        },
         { withCredentials: true }
       );
       dispatch(addUser(res.data.data));
@@ -53,153 +64,156 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center my-10">
-      <div className="card bg-base-300 w-96 shadow-xl">
-        <div className="card-body">
-          <h2 className="card-title justify-center">
-            {isLoginForm ? "Login" : "Sign Up"}
-          </h2>
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md">
+        <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
+          {isLoginForm ? "Welcome Back!" : "Create an Account"}
+        </h2>
+        <p className="text-center text-gray-500 mb-6">
+          {isLoginForm
+            ? "Login to continue"
+            : "Sign up to join our amazing platform"}
+        </p>
+        <div className="space-y-4">
+          {!isLoginForm && (
+            <>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  value={firstName}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Middle Name
+                </label>
+                <input
+                  type="text"
+                  value={middleName}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setMiddleName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  value={lastName}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Age
+                </label>
+                <input
+                  type="number"
+                  value={age}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setAge(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Gender
+                </label>
+                <select
+                  value={gender}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setGender(e.target.value)}
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  College
+                </label>
+                <input
+                  type="text"
+                  value={college}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setCollege(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  College Year
+                </label>
+                <input
+                  type="text"
+                  value={year}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setYear(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
+                  Mobile Number
+                </label>
+                <input
+                  type="text"
+                  value={number}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+                  onChange={(e) => setNumber(e.target.value)}
+                />
+              </div>
+            </>
+          )}
           <div>
-            {!isLoginForm && (
-              <>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">First Name</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={firstName}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setFirstName(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Middle Name</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={middleName}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setMiddleName(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Last Name</span>
-                  </div>
-                  </label>
-                  <input
-                    type="text"
-                    value={lastName}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setLastName(e.target.value)}
-                  />
-                                  <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Age</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={age}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setAge(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Gender</span>
-                  </div>
-                  <select
-                    className="select select-bordered w-full max-w-xs"
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                  >
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">College</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={college}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setCollege(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">College Year</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={year}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setYear(e.target.value)}
-                  />
-                </label>
-                <label className="form-control w-full max-w-xs my-2">
-                  <div className="label">
-                    <span className="label-text">Mobile Number</span>
-                  </div>
-                  <input
-                    type="text"
-                    value={number}
-                    className="input input-bordered w-full max-w-xs"
-                    onChange={(e) => setNumber(e.target.value)}
-                  />
-                </label>
-              </>
-            )}
-            <label className="form-control w-full max-w-xs my-2">
-              <div className="label">
-                <span className="label-text">Email ID:</span>
-              </div>
-              <input
-                type="text"
-                value={emailId}
-                className="input input-bordered w-full max-w-xs"
-                onChange={(e) => setEmailId(e.target.value)}
-              />
+            <label className="block text-sm font-medium text-gray-700">
+              Email ID
             </label>
-            <label className="form-control w-full max-w-xs my-2">
-              <div className="label">
-                <span className="label-text">Password</span>
-              </div>
-              <input
-                type="password"
-                value={password}
-                className="input input-bordered w-full max-w-xs"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <input
+              type="email"
+              value={emailId}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              onChange={(e) => setEmailId(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Password
             </label>
+            <input
+              type="password"
+              value={password}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <p className="text-red-500">{error}</p>
-          <div className="card-actions justify-center m-2">
-            <button
-              className="btn btn-primary"
-              onClick={isLoginForm ? handleLogin : handleSignUp}
-            >
-              {isLoginForm ? "Login" : "Sign Up"}
-            </button>
-          </div>
-
-          <p
-            className="m-auto cursor-pointer py-2"
-            onClick={() => setIsLoginForm((value) => !value)}
-          >
-            {isLoginForm
-              ? "New User? Signup Here"
-              : "Existing User? Login Here"}
-          </p>
         </div>
+        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <div className="mt-6 flex justify-center">
+          <button
+            className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-md shadow-md hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
+            onClick={isLoginForm ? handleLogin : handleSignUp}
+          >
+            {isLoginForm ? "Login" : "Sign Up"}
+          </button>
+        </div>
+        <p
+          className="mt-4 text-center text-sm text-purple-500 cursor-pointer hover:underline"
+          onClick={() => setIsLoginForm((value) => !value)}
+        >
+          {isLoginForm
+            ? "New User? Sign up here"
+            : "Existing User? Login here"}
+        </p>
       </div>
     </div>
   );
 };
+
 export default Login;

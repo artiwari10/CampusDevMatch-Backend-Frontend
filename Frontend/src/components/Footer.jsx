@@ -1,6 +1,34 @@
+import { useState, useEffect } from "react";
+
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    // Check if the user has scrolled to the bottom
+    if (scrollTop + windowHeight >= documentHeight) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <footer className="footer bg-base-200 text-neutral-content p-4 fixed bottom-0">
+    <footer
+      className={`footer bg-base-200 text-neutral-content p-4 bottom-0 left-0 w-full transition-transform duration-300 ${
+        isVisible ? "translate-y-0" : "translate-y-full"
+      }`}
+    >
       <aside className="grid-flow-col items-center">
         <svg
           width="36"
@@ -53,4 +81,5 @@ const Footer = () => {
     </footer>
   );
 };
+
 export default Footer;
