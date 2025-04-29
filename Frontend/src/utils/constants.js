@@ -1,1 +1,1 @@
-export const BASE_URL = "https://campusdevmatch-backend-frontend.onrender.com";
+export const BASE_URL = "https://cdmbackend.onrender.com";
