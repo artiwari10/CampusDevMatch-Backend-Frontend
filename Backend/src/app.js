@@ -10,7 +10,7 @@ const intializeSocket = require("./utils/socket");
 require('dotenv').config();
 
 app.use(cors({
-  origin: ['https://campus-dev-match-backend-frontend.vercel.app','https://cd-mfrontend.vercel.app'],
+  origin: 'http://localhost:5173',
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'DELETE']
 }));
