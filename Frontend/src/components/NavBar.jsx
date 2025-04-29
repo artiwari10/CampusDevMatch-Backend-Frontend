@@ -15,26 +15,20 @@ const NavBar = () => {
       dispatch(removeUser());
       return navigate("/login");
     } catch (err) {
-      // Error logic maybe redirect to error page
+      console.error("Logout failed:", err);
     }
   };
 
   return (
-    <div className="navbar bg-gray-900 text-white shadow-lg px-6">
+    <div className="navbar bg-gray-900 text-white shadow-lg px-6 py-4">
       <div className="flex items-center justify-between w-full">
         {/* Left Section: Title */}
         <Link
           to="/"
-          className="relative group text-2xl font-bold tracking-wide"
+          className="text-3xl font-extrabold tracking-wide"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          {/* Default "CDM" */}
-          <span className="inline-block transition-all duration-300 group-hover:opacity-0">
-            CDM
-          </span>
-          {/* Typing Animation for "Campus Dev Match" */}
-          <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 whitespace-nowrap typing-animation">
-            Campus Dev Match
-          </span>
+          Campus Dev Match
         </Link>
 
         {/* Right Section: User Info */}
@@ -63,7 +57,6 @@ const NavBar = () => {
                     className="justify-between hover:bg-gray-700"
                   >
                     Profile
-                    <span className="badge badge-primary">New</span>
                   </Link>
                 </li>
                 <li>

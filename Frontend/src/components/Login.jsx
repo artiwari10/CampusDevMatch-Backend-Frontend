@@ -64,8 +64,8 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
-      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md">
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-auto">
+      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md mb-auto">
         <h2 className="text-4xl font-extrabold text-center text-gray-800 mb-6">
           {isLoginForm ? "Welcome Back!" : "Create an Account"}
         </h2>

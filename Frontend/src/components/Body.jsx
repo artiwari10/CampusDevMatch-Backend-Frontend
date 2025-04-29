@@ -16,6 +16,9 @@ const Body = () => {
     if (userData) return;
     try {
       const res = await axios.get(BASE_URL + "/profile/view", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         withCredentials: true,
       });
       dispatch(addUser(res.data));
@@ -23,6 +26,7 @@ const Body = () => {
       if (err.status === 401) {
         navigate("/login");
       }
+      else
       console.error(err);
     }
   };

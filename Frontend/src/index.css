@@ -9,24 +9,8 @@
   --background-color: #f5f5f5; /* Example: Light Gray */
 }
 
-/* Typing animation */
-.typing-animation {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid white; /* Cursor effect */
-  animation: typing 2s steps(20, end), blink 0.5s step-end infinite;
-}
 
-/* Typing effect */
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 16ch; /* Adjust this based on the length of "Campus Dev Match" */
-  }
-}
+
 
 /* Blinking cursor effect */
 @keyframes blink {
