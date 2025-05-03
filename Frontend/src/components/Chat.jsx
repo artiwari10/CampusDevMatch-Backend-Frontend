@@ -9,29 +9,39 @@ const Chat = () => {
   const { targetUserId } = useParams();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  const [showNotification, setShowNotification] = useState(true); // Notification state
   const user = useSelector((store) => store.user);
   const userId = user?._id;
 
-  // Ref to track the end of the chat container
   const chatEndRef = useRef(null);
 
   const fetchChatMessages = async () => {
-    const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
-      withCredentials: true,
-    });
+    try {
+      const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
+        withCredentials: true,
+      });
 
-    const chatMessages = chat?.data?.messages.map((msg) => {
-      const { senderId, text } = msg;
-      return {
-        firstName: senderId?.firstName,
-        lastName: senderId?.lastName,
-        text,
-      };
-    });
-    setMessages(chatMessages);
+      const chatMessages = chat?.data?.messages.map((msg) => {
+        const { senderId, text } = msg;
+        if (!senderId) {
+          return {
+            firstName: "Unknown",
+            lastName: "",
+            text,
+          };
+        }
+        return {
+          firstName: senderId?.firstName,
+          lastName: senderId?.lastName,
+          text,
+        };
+      });
+      setMessages(chatMessages);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  // Scroll to the bottom of the chat
   const scrollToBottom = () => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -60,10 +70,18 @@ const Chat = () => {
     };
   }, [userId, targetUserId]);
 
-  // Scroll to the bottom whenever messages change
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Automatically hide the notification after 5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowNotification(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const sendMessage = () => {
     const socket = createSocketConnection();
@@ -79,6 +97,21 @@ const Chat = () => {
 
   return (
     <div className="w-3/4 mx-auto border border-gray-300 rounded-lg shadow-lg m-5 h-[80vh] flex flex-col bg-gray-50">
+      {/* Notification */}
+      {showNotification && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white p-4 rounded-lg shadow-lg flex items-center justify-between">
+          <p>Welcome to the Campus Dev Match,
+            <br />The backend is hosted on Render.com. Due to cold start time, the chat feature currently works only on the local setup. Thank you.</p>
+        
+          <button
+            onClick={() => setShowNotification(false)}
+            className="ml-4 bg-white text-blue-500 rounded-full px-2 py-1 hover:bg-gray-200"
+          >
+            Close
+          </button>
+        </div>
+      )}
+
       {/* Chat Header */}
       <h1 className="p-5 border-b border-gray-300 text-2xl font-bold text-gray-800 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-t-lg">
         Chat
@@ -101,7 +134,7 @@ const Chat = () => {
               }`}
             >
               <div className="text-sm font-semibold mb-1">
-                {msg.firstName} {msg.lastName}
+                {msg.firstName || "Unknown"} {msg.lastName || ""}
               </div>
               <div className="text-base">{msg.text}</div>
             </div>

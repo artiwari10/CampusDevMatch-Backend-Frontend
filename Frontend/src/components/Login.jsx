@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
@@ -19,8 +19,18 @@ const Login = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [showNotification, setShowNotification] = useState(true); // Notification visibility
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Automatically hide the notification after 5 seconds
+    const timer = setTimeout(() => {
+      setShowNotification(false);
+    }, 5000);
+
+    return () => clearTimeout(timer); // Cleanup timer
+  }, []);
 
   const handleLogin = async () => {
     setIsLoading(true); // Start loading
@@ -71,8 +81,23 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-auto">
-      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md mb-auto">
+    <div className="relative flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+      {/* Notification Popup */}
+      {showNotification && (
+        <div className="absolute top-5 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center justify-between w-11/12 max-w-md">
+          <p className="text-sm font-medium">
+            The backend is hosted on Render.com, so it may take up to 60 seconds to load. Thank you for your patience!
+          </p>
+          <button
+            className="ml-4 text-white font-bold text-lg focus:outline-none"
+            onClick={() => setShowNotification(false)}
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md">
         {isLoading ? (
           // Loading message
           <div className="text-center text-gray-700">
